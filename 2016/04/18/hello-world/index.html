@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
   <title>Hello World - Songkey</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,11 +17,11 @@
     <script type="text/javascript" src="/js/css3-mediaqueries.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/highlight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 <body>
-    <header id="header">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="header">
     <div class="nav-warp">
       <nav id="nav" class="w">
         
@@ -32,7 +32,7 @@
         <a id="nav-search" class="icon-search fr" onclick="show_search()" title="Search"></a>
         <div id="nav-search-input" class="hide">
           <form class="search-form" onsubmit="return dispatch()">
-            <input type="hidden" id="site" value="site:http://yoursite.com">
+            <input type="hidden" id="site" value="site:http://songkey.github.io">
             <input type="text" id="q" class="input-text" name="q" placeholder="Search">
             <input type="submit" value="" class="input-submit">
           </form>
@@ -76,6 +76,53 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h2 id="测试功能"><a href="#测试功能" class="headerlink" title="测试功能"></a>测试功能</h2><h3 id="公式测试"><a href="#公式测试" class="headerlink" title="公式测试"></a>公式测试</h3>
+$$\frac{\partial u}{\partial t}
+= h^2 \left( \frac{\partial^2 u}{\partial x^2} +
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}\right)$$
+
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul>
+<li>文本1</li>
+<li>文本2</li>
+<li>文本3</li>
+</ul>
+<ol>
+<li>文本1</li>
+<li>文本2</li>
+<li>文本3</li>
+</ol>
+<h3 id="链接和图片"><a href="#链接和图片" class="headerlink" title="链接和图片"></a>链接和图片</h3><p><a href="http://songkey.github.io/">我的网站</a><br><img src="http://img1.3lian.com/2015/w6/53/d/1.jpg" alt=""></p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote>
+<p>一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。</p>
+</blockquote>
+<h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><p> <em>一盏灯</em>， 一片昏黄；<strong>一简书</strong>， 一杯淡茶。 守着那一份淡定， 品读属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ 保持淡定， 人生从此不再寂寞。</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
 
   </section>
   
@@ -83,6 +130,12 @@
 
     
 
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-hello-world" data-title="Hello World" data-url="http://songkey.github.io/2016/04/18/hello-world/"></div>
+  <!-- 多说评论框 end -->
+</section>
 </section>
     <footer id="footer">
     <div class="foot-warp">
@@ -91,6 +144,35 @@
   </footer>
   <script src="/js/tools.js"></script>
   
+  
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'songkey'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
   
 </body>
