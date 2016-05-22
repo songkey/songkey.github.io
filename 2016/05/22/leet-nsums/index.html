@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  
+  <title>LeetCode Two Sum, 3Sum, 3Sum Closest and 4Sum - Songkey</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="alternative" href="/atom.xml" title="Songkey" type="application/atom+xml">
+  
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="/js/html5.js"></script>
+    <script type="text/javascript" src="/js/css3-mediaqueries.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="header">
+    <div class="nav-warp">
+      <nav id="nav" class="w">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+        <a id="nav-search" class="icon-search fr" onclick="show_search()" title="搜索"></a>
+        <div id="nav-search-input" class="hide">
+          <form class="search-form" onsubmit="return dispatch()">
+            <input type="hidden" id="site" value="site:http://songkey.github.io">
+            <input type="text" id="q" class="input-text" name="q" placeholder="搜索">
+            <input type="submit" value="" class="input-submit">
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div id="logo">
+      <div class="hg">
+      
+        <h2 id="site-title">
+          <a href="/">Songkey</a>
+        </h2>
+        
+      
+      </div>
+    </div>
+  </header>
+
+  <section id="main"><article class="post">
+  <header class="post-head">
+    
+  
+    
+      <h1 class="post-title">LeetCode Two Sum, 3Sum, 3Sum Closest and 4Sum</h1>
+    
+  
+
+    
+<time datetime="2016-05-22T13:01:00.000Z" class="post-time">2016-05-22</time>
+
+  </header>
+  
+  <section class="post-content typo">
+    <p>从今天开刷 LeetCode。为了能坚持下去，要把做题过程中遇到的问题不论巨细，都整理出来。作为学习笔记和时间锚点。从最简单的开始吧—</p>
+<a id="more"></a>
+<h1 id="Two-Sum"><a href="#Two-Sum" class="headerlink" title="Two Sum"></a>Two Sum</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><blockquote>
+<p>Given nums = [2, 7, 11, 15], target = 9,</p>
+<p>Because nums[0] + nums[1] = 2 + 7 = 9,</p>
+<p>return [0, 1].</p>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>$O(n^2)$ 的穷举法显然不是首选。这个问题有点查找问题的感觉，尝试先排序（$O(nlogn$)），然后同时从两端开始搜索($O(n)$)：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span> nums_size = nums.size(), sum;</span><br><span class="line">    <span class="built_in">vector</span>&lt; itm &gt; tmp_nums(nums_size);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums_size; ++i) &#123;</span><br><span class="line">      tmp_nums[i].idx = i;</span><br><span class="line">      tmp_nums[i].val = nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    sort(tmp_nums.begin(), tmp_nums.end());</span><br><span class="line">    <span class="keyword">int</span> idxl = <span class="number">0</span>, idxr = nums_size - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (idxl &lt; idxr &amp;&amp; (sum = tmp_nums[idxl].val + tmp_nums[idxr].val) != target)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (sum &gt; target) &#123; idxr--; &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123; idxl++; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (idxl &gt;= idxr) &#123; return&#123;&#125;; &#125;</span><br><span class="line">    return&#123; tmp_nums[idxl].idx, tmp_nums[idxr].idx &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">class</span> itm &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    itm(<span class="keyword">int</span> _i = <span class="number">0</span>, <span class="keyword">int</span> _v = <span class="number">0</span>) : idx(_i), val(_v) &#123;&#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt; (<span class="keyword">const</span> itm&amp; rhs) &#123;</span><br><span class="line">      return val &lt; rhs.val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> idx; <span class="keyword">int</span> val;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行时间 12ms，结果如下：</p>
+<p><img src="https://o658pk7jo.qnssl.com/2sum1.jpg" alt=""></p>
+<p>速度是可以接受的，但代码太相当冗长。用 c++ 的话可以直接利用 map 的 find 方法实现，代码更简洁：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; num2idx;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> num = nums[i];</span><br><span class="line">      <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator it = num2idx.find(target - num);</span><br><span class="line">      <span class="keyword">if</span> (it != num2idx.end()) &#123;</span><br><span class="line">        return&#123; it-&gt;second, i &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">      num2idx[num] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行时间 24ms，结果如下：</p>
+<p><img src="https://o658pk7jo.qnssl.com/2sum2.jpg" alt=""></p>
+<p>速度慢了许多，如果用 hash map 的话应该会有提高。</p>
+<h1 id="3Sum"><a href="#3Sum" class="headerlink" title="3Sum"></a>3Sum</h1><h2 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h2><p>Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><ul>
+<li>Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ≤ b ≤ c)</li>
+<li>The solution set must not contain duplicate triplets.</li>
+</ul>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><blockquote>
+<p>given array S = {-1 0 1 2 -1 -4},</p>
+<p>A solution set is:</p>
+<p>(-1, 0, 1)</p>
+<p>(-1, -1, 2)</p>
+</blockquote>
+
+  </section>
+  
+  <footer class="post-foot">
+    <section class="post-foot-warp clear">
+      
+  <ul class="post-tag icon-tag fl">
+    
+      <li><a href="/tags/leetcode/">#leetcode</a></li>
+    
+      <li><a href="/tags/c/">#c</a></li>
+    
+      <li><a href="/tags/c/">#c++</a></li>
+    
+  </ul>
+
+      
+  <ul class="post-category icon-category fr">
+    
+      <li><a href="/categories/leetcode/">leetcode</a></li>
+    
+  </ul>
+
+    </section>
+  </footer>
+  
+</article>
+
+    
+<nav id="post-nav" class="clear">
+  
+  
+    <a href="/2016/04/24/hello-world/" id="post-nav-older" class="post-nav-link-wrap fr" title="Hello World">
+      <div class="post-nav-title">Hello World &raquo;</div>
+    </a>
+  
+</nav>
+
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-leet-nsums" data-title="LeetCode Two Sum, 3Sum, 3Sum Closest and 4Sum" data-url="http://songkey.github.io/2016/05/22/leet-nsums/"></div>
+  <!-- 多说评论框 end -->
+</section>
+</section>
+    <footer id="footer">
+    <div class="foot-warp">
+      <p>© 2016 Songkey</p>
+    </div>
+  </footer>
+  <script src="/js/tools.js"></script>
+
+  
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'songkey'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+</body>
+</html>
